@@ -1,0 +1,35 @@
+// The upstream project reserves third-party skins; do not commit the extracted files.
+def skinPrefix = 'assets/villagerpatrols/textures/entity/'
+def skinOutput = layout.buildDirectory.dir('generated/upstream-skins')
+
+def extractUpstreamSkins = tasks.register('extractUpstreamSkins') {
+    outputs.dir(skinOutput)
+    // Always validate the pinned artifact, including when generated files already exist.
+    outputs.upToDateWhen { false }
+    doLast {
+        def archive = layout.buildDirectory.file('tmp/upstream-skins.jar').get().asFile
+        def destination = skinOutput.get().asFile
+        archive.parentFile.mkdirs()
+        try {
+            new URI('https://cdn.modrinth.com/data/zPjzMzn9/versions/tT1Oxgw6/villagerpatrols-1.0.3.jar').toURL().withInputStream { input ->
+                archive.withOutputStream { output -> output << input }
+            }
+            def digest = java.security.MessageDigest.getInstance('SHA-512')
+            archive.withInputStream { input ->
+                byte[] buffer = new byte[65536]
+                int n
+                while ((n = input.read(buffer)) != -1) digest.update(buffer, 0, n)
+            }
+            def actual = digest.digest().collect { String.format('%02x', it & 0xff) }.join()
+            if (actual != '66a39c9dcb7e241192650ee76a791340ad45571569ec09976e1ebe2daabaa83e45db433df3db0dd98bda21b4f9623cfa3791fbef144ce6c9cdb79fbde1a06abc') throw new GradleException('Upstream artifact SHA-512 mismatch')
+            def selected = zipTree(archive).matching { include "${skinPrefix}**" }
+            if (selected.files.size() != 568) throw new GradleException('Unexpected upstream skin count')
+            delete destination
+            copy { from selected; into destination }
+        } finally {
+            delete archive
+        }
+    }
+}
+sourceSets.main.resources.srcDir(extractUpstreamSkins)
+tasks.named('processResources') { dependsOn(extractUpstreamSkins) }

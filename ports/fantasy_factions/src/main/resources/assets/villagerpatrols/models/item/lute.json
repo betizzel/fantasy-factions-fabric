@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "villagerpatrols:item/lute"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [75, -155, 80],
+      "translation": [-5.5, 4.5, 1.5],
+      "scale": [1.45, 1.45, 1.45]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [75, 155, -80],
+      "translation": [5.5, 4.5, 1.5],
+      "scale": [1.45, 1.45, 1.45]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1.3, 1.3, 1.3]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1.3, 1.3, 1.3]
+    }
+  }
+}

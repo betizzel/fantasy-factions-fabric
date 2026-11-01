@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "villagerpatrols",
+  "version": "1.0.3",
+  "name": "Villager Patrols",
+  "authors": ["Javieljefe"],
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.javic.villagerpatrols.VillagerPatrols"],
+    "client": ["com.javic.villagerpatrols.client.VillagerPatrolsClient"],
+    "modmenu": ["com.javic.villagerpatrols.client.VillagerPatrolsModMenu"]
+  },
+  "mixins": ["villagerpatrols.mixins.json", "villagerpatrols.client.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "fabric-api": "*",
+    "forgeconfigapiport": ">=8.0.1",
+    "porting_lib_entity": ">=2.3.13",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  },
+  "suggests": {"slimpatch": "*", "modmenu": "*"}
+}

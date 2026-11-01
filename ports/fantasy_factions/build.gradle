@@ -1,0 +1,7 @@
+dependencies {
+    modImplementation 'fuzs.forgeconfigapiport:forgeconfigapiport-fabric:8.0.2'
+    modImplementation 'io.github.fabricators_of_create.Porting-Lib:entity:2.3.13+1.20.1'
+    modCompileOnly 'com.terraformersmc:modmenu:7.2.2'
+}
+
+apply from: 'upstream-skins.gradle'

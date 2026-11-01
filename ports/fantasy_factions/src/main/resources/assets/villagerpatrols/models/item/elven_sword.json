@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "villagerpatrols:item/elven_sword"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, 55],
+      "translation": [0, 5.3, 0.5],
+      "scale": [1.04, 1.04, 1.04]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, -55],
+      "translation": [0, 5.3, 0.5],
+      "scale": [1.04, 1.04, 1.04]
+    }
+  }
+}

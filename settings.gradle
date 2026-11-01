@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'fantasy-factions-fabric'
+include 'fantasy_factions'
+project(':fantasy_factions').projectDir = file('ports/fantasy_factions')
